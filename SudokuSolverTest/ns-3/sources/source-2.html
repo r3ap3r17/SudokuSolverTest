@@ -1,0 +1,166 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Field</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">nl.elridge.sudoku.view</a>
+</div>
+
+<h1>Coverage Summary for Class: Field (nl.elridge.sudoku.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Field</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (9/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package nl.elridge.sudoku.view;
+&nbsp;
+&nbsp;import java.awt.Color;
+&nbsp;import java.awt.Dimension;
+&nbsp;import java.awt.Font;
+&nbsp;import javax.swing.BorderFactory;
+&nbsp;import javax.swing.JLabel;
+&nbsp;
+&nbsp;/**
+&nbsp; * This class represents a field on the SudokuPanel.
+&nbsp; *
+&nbsp; * @author Eric Beijer
+&nbsp; */
+&nbsp;public class Field extends JLabel {
+&nbsp;    private int x;      // X position in game.
+&nbsp;    private int y;      // Y position in game.
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs the label and sets x and y positions in game.
+&nbsp;     *
+&nbsp;     * @param x     X position in game.
+&nbsp;     * @param y     Y position in game.
+&nbsp;     */
+&nbsp;    public Field(int x, int y) {
+<b class="fc">&nbsp;        super(&quot;&quot;, CENTER);</b>
+<b class="fc">&nbsp;        this.x = x;</b>
+<b class="fc">&nbsp;        this.y = y;</b>
+&nbsp;        
+<b class="fc">&nbsp;        setPreferredSize(new Dimension(40, 40));</b>
+<b class="fc">&nbsp;        setBorder(BorderFactory.createLineBorder(Color.GRAY));</b>
+<b class="fc">&nbsp;        setFont(new Font(Font.DIALOG, Font.PLAIN, 20));</b>
+<b class="fc">&nbsp;        setOpaque(true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets number and foreground color according to userInput.
+&nbsp;     *
+&nbsp;     * @param number        Number to be set.
+&nbsp;     * @param userInput     Boolean indicating number is user input or not.
+&nbsp;     */
+&nbsp;    public void setNumber(int number, boolean userInput) {
+<b class="fc">&nbsp;        setForeground(userInput ? Color.BLUE : Color.BLACK);</b>
+<b class="fc">&nbsp;        setText(number &gt; 0 ? number + &quot;&quot; : &quot;&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns x position in game.
+&nbsp;     *
+&nbsp;     * @return  X position in game.
+&nbsp;     */
+&nbsp;    public int getFieldX() {
+<b class="nc">&nbsp;        return x;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Return y position in game.
+&nbsp;     *
+&nbsp;     * @return  Y position in game.
+&nbsp;     */
+&nbsp;    public int getFieldY() {
+<b class="nc">&nbsp;        return y;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-03 18:53</div>
+</div>
+</body>
+</html>
