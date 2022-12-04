@@ -1,0 +1,156 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Sudoku</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">nl.elridge.sudoku.view</a>
+</div>
+
+<h1>Coverage Summary for Class: Sudoku (nl.elridge.sudoku.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Sudoku</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package nl.elridge.sudoku.view;
+&nbsp;
+&nbsp;import java.awt.BorderLayout;
+&nbsp;import javax.swing.JFrame;
+&nbsp;import javax.swing.UIManager;
+&nbsp;import nl.elridge.sudoku.controller.ButtonController;
+&nbsp;import nl.elridge.sudoku.controller.SudokuController;
+&nbsp;import nl.elridge.sudoku.model.Game;
+&nbsp;
+&nbsp;/**
+&nbsp; * Main class of program.
+&nbsp; *
+&nbsp; * @author Eric Beijer
+&nbsp; */
+&nbsp;public class Sudoku extends JFrame {
+&nbsp;    public Sudoku() {
+<b class="fc">&nbsp;        super(&quot;Sudoku&quot;);</b>
+<b class="fc">&nbsp;        setDefaultCloseOperation(EXIT_ON_CLOSE);</b>
+<b class="fc">&nbsp;        getContentPane().setLayout(new BorderLayout());</b>
+&nbsp;
+<b class="fc">&nbsp;        Game game = new Game();</b>
+&nbsp;
+<b class="fc">&nbsp;        ButtonController buttonController = new ButtonController(game);</b>
+<b class="fc">&nbsp;        ButtonPanel buttonPanel = new ButtonPanel();</b>
+<b class="fc">&nbsp;        buttonPanel.setController(buttonController);</b>
+<b class="fc">&nbsp;        add(buttonPanel, BorderLayout.EAST);</b>
+&nbsp;
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        SudokuController sudokuController = new SudokuController(sudokuPanel, game);</b>
+<b class="fc">&nbsp;        sudokuPanel.setGame(game);</b>
+<b class="fc">&nbsp;        sudokuPanel.setController(sudokuController);</b>
+<b class="fc">&nbsp;        add(sudokuPanel, BorderLayout.CENTER);</b>
+&nbsp;
+<b class="fc">&nbsp;        game.addObserver(buttonPanel);</b>
+<b class="fc">&nbsp;        game.addObserver(sudokuPanel);</b>
+&nbsp;
+<b class="fc">&nbsp;        pack();</b>
+<b class="fc">&nbsp;        setLocationRelativeTo(null);</b>
+<b class="fc">&nbsp;        setVisible(true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Main entry point of program.
+&nbsp;     * 
+&nbsp;     * @param args Command line arguments.
+&nbsp;     */
+&nbsp;    public static void main(String[] args) {
+&nbsp;        // Use System Look and Feel
+<b class="fc">&nbsp;        try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }</b>
+<b class="fc">&nbsp;        catch (Exception ex) { ex.printStackTrace(); }</b>
+<b class="fc">&nbsp;        new Sudoku();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-04 18:38</div>
+</div>
+</body>
+</html>

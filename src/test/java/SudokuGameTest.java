@@ -1,8 +1,10 @@
 import nl.elridge.sudoku.model.Game;
 import nl.elridge.sudoku.view.Sudoku;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import javax.swing.*;
 import java.util.Arrays;
 
 public class SudokuGameTest extends BaseTestClass {
@@ -15,23 +17,15 @@ public class SudokuGameTest extends BaseTestClass {
         game.newGame();
     }
 
-    @Test
-    public void setNumbersTest() {
-        int x = 3;
-        int y = 6;
-        int n = 5;
-        game.setNumber(x, y, n);
-        Assertions.assertEquals(game.getNumber(x, y), test.generateGameArray(game)[y][x]);
-    }
-
     // Ova test metoda treba da proveri da li je game.game niz promenjen nakon game.newGame()
     @Test
-    public void clickNewGameTest() {
+    public void generateNewGameTest() {
         int[][] tmp = copyArr(test.generateGameArray(game));
         game.newGame();
         Assertions.assertFalse(Arrays.deepEquals(test.generateGameArray(game), tmp));
     }
 
+    // Metoda za proveru help)n checkbox-a
     @Test
     public void helpOnCheckBoxTrueTest() {
         game.setHelp(true);
@@ -44,6 +38,7 @@ public class SudokuGameTest extends BaseTestClass {
         Assertions.assertFalse(game.isHelp());
     }
 
+    // Metoda koja proverava da li je selected number nakon postavljanja u zadato polje zapravo u tom polju
     @Test
     public void selectedNumberTest() {
         int x = 3;
@@ -54,9 +49,14 @@ public class SudokuGameTest extends BaseTestClass {
         Assertions.assertEquals(game.getNumber(x, y), game.getSelectedNumber());
     }
 
-    @Test
-    public void isSelectedNumberCandidateValidTrue() {
-        int n = 1;
+    // Proverava da li je broj kandidat za to polje i da li to polje u nizu check nosi vrednost true
+    // postavlja ga ako su ti uslovi ispunjeni i dokazuje da polje na koje je broj postavljen
+    // ima vrednost true u nizu check[x][y]
+    // korisceni su parametri ValueSource
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9 })
+    public void isSelectedNumberCandidateValidTrue(int n) {
+        // kreira boolean[][] check, gde vrednost true znaci da taj borj stoji na tom mestu
         game.checkGame();
         game.setSelectedNumber(n);
         for (int y = 0; y < 9; y++) {
@@ -68,10 +68,10 @@ public class SudokuGameTest extends BaseTestClass {
             }
         }
     }
-
-    @Test
-    public void isSelectedNumberCandidateValidFalse() {
-        int n = 1;
+    // Za ovaj test sam koristio parametre iz sudoku-numbers.csv fajla
+    @ParameterizedTest
+    @CsvFileSource(resources = "sudoku-numbers.csv")
+    public void isSelectedNumberCandidateValidFalse(int n) {
         game.checkGame();
         game.setSelectedNumber(n);
         for (int y = 0; y < 9; y++) {
@@ -84,12 +84,10 @@ public class SudokuGameTest extends BaseTestClass {
         }
     }
 
+    // starts the gui
     @Test
     public void testGui() {
-        // Use System Look and Feel
-        try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
-        catch (Exception ex) { ex.printStackTrace(); }
-        new Sudoku();
+        Sudoku.main(null);
     }
 
     @AfterEach
